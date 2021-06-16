@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">@color/yellow_brand</color>
+    <color name="colorPrimaryDark">@color/yellow_brand_dark</color>
+    <color name="colorAccent">@color/blue_brand</color>
+
+    <color name="colorAccentDark">@color/blue_brand_dark</color>
+
+    <color name="blue_brand">#0080D2</color>
+    <color name="blue_brand_dark">#0068ab</color>
+    <color name="blue_brand_light">#59b6f2</color>
+    <color name="blue_brand_extra_light">#acd6f1</color>
+    <color name="yellow_brand">#F8C81A</color>
+    <color name="yellow_brand_dark">#b49010</color>
+
+    <color name="yellow_brand_light">#fffcef</color>
+
+    <color name="background_default">#dfe2e4</color>
+    <!--<color name="background_default">#faeebb</color>-->
+
+    <color name="text">#000</color>
+
+    <color name="green">#A7CE05</color>
+    <color name="green_dark">#829f0f</color>
+    <color name="green_light">#C6E504</color>
+    <color name="green_extra_light">#f7ffc7</color>
+
+
+    <color name="purple">@color/blue_brand</color>
+    <color name="purple_light_design">@color/blue_brand_light</color>
+    <color name="purple_light">@color/blue_brand_light</color>
+    <color name="purple_extra_light">@color/blue_brand_extra_light</color>
+    <color name="purple_dark">@color/blue_brand_dark</color>
+
+
+    <!--<color name="purple">#912991</color>-->
+    <!--<color name="purple_light_design">#af64ac</color>-->
+    <!--<color name="purple_light">#B7A0BF</color>-->
+    <!--<color name="purple_extra_light">#e4dce6</color>-->
+    <!--<color name="purple_dark">#432850</color>-->
+
+    <color name="black">#000</color>
+
+    <color name="green_gradient_dark">#C6E504</color>
+    <color name="green_gradient_light">#EBF49D</color>
+    <color name="transblack_entities">#9000</color>
+    <color name="white">#FFF</color>
+    <color name="white_90">#e6ffffff</color>
+    <color name="orange">#e78f00</color>
+    <color name="grey">#807f7f</color>
+
+    <color name="tab_selected">#F8FCE1</color>
+    <color name="tab_unselected">#E7F498</color>
+
+    <color name="bg_edittext">#F8FCE1</color>
+
+    <color name="grey_disabled">#7dababab</color>
+    <color name="red">#F00</color>
+    <color name="red_dark">#d10000</color>
+    <color name="red_orange">#F7722F</color>
+    <color name="black_semitransp_pressed">#34000000</color>
+    <color name="black_semitransp">#60000000</color>
+
+
+</resources>

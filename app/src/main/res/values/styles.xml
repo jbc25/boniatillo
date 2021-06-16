@@ -1,0 +1,51 @@
+<resources>
+
+
+    <style name="ButtonMes">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">@drawable/bg_button_purple</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:paddingLeft">25dp</item>
+        <item name="android:paddingRight">25dp</item>
+        <item name="android:paddingTop">10dp</item>
+        <item name="android:paddingBottom">10dp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:minWidth">200dp</item>
+    </style>
+
+    <style name="ButtonMes.Green">
+        <item name="android:background">@drawable/bg_button_green_rounded</item>
+        <item name="android:textColor">@color/black_disabled_enabled</item>
+    </style>
+
+    <style name="ViewProgressPayment">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:background">@drawable/bg_progress_payment</item>
+        <item name="android:textColor">@color/text_progress_payment</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="BtnRRSS">
+        <item name="android:layout_width">50dp</item>
+        <item name="android:layout_height">50dp</item>
+        <item name="android:background">@drawable/bg_rrss_icons</item>
+        <item name="android:scaleType">center</item>
+        <item name="android:layout_margin">5dp</item>
+    </style>
+
+    <item name="progress_mes" type="id"/>
+    <style name="ProgressMES">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:adjustViewBounds">true</item>
+        <item name="android:src">@mipmap/img_acpp_circle</item>
+        <item name="android:id">@id/progress_mes</item>
+    </style>
+
+
+
+</resources>

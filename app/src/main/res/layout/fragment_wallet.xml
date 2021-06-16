@@ -1,0 +1,267 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:gravity="center"
+    android:orientation="vertical"
+    tools:context=".ui.wallet.WalletFragment">
+
+    <LinearLayout
+        android:id="@+id/view_no_wallet"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:visibility="visible">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
+            android:src="@mipmap/ic_intro_4" />
+
+        <TextView
+            style="@style/TextBase"
+            android:gravity="center_horizontal"
+            android:padding="10dp"
+            android:text="@string/register_to_use_wallet_text" />
+
+        <LinearLayout
+            android:id="@+id/view_enter_buttons"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:layout_marginTop="10dp">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center_horizontal">
+
+                <TextView
+                    style="@style/TextBase"
+                    android:text="@string/already_have_account"
+                    android:layout_marginBottom="5dp"/>
+
+                <TextView
+                    android:id="@+id/btn_login"
+                    style="@style/ButtonMes"
+                    android:padding="10dp"
+                    android:text="@string/enter" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center_horizontal"
+                android:layout_marginTop="20dp"
+                android:visibility="gone">
+
+                <TextView
+                    style="@style/TextBase"
+                    android:text="@string/dont_have_account"
+                    android:layout_marginBottom="5dp"/>
+
+                <TextView
+                    android:id="@+id/btn_singup"
+                    style="@style/ButtonMes"
+                    android:padding="10dp"
+                    android:text="@string/register" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+    <ScrollView
+        android:id="@+id/view_wallet"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="visible">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:paddingBottom="15dp"
+            android:paddingTop="10dp">
+
+
+            <TextView
+                android:id="@+id/tv_name"
+                style="@style/TextTitleComfortaa.Purple"
+                android:layout_marginBottom="10dp"
+                android:gravity="center_horizontal" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:padding="20dp">
+
+                <TextView
+                    style="@style/TextBase.Purple"
+                    android:text="@string/your_balance_is" />
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center">
+
+                    <ProgressBar
+                        android:id="@+id/progress_balance"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignBottom="@+id/tv_balance"
+                        android:layout_alignTop="@+id/tv_balance"
+                        android:indeterminate="true"
+                        android:visibility="gone" />
+
+                    <TextView
+                        android:id="@+id/tv_balance"
+                        style="@style/TextBase"
+                        android:layout_marginLeft="10dp"
+                        android:padding="3dp"
+                        android:text="20.00 B" />
+                </RelativeLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/btn_pending_payments"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:background="@color/green_gradient_light"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:padding="15dp"
+                android:visibility="gone">
+
+                <android.support.v7.widget.AppCompatImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp"
+                    android:adjustViewBounds="true"
+                    android:src="@mipmap/ic_campana" />
+
+                <TextView
+                    android:id="@+id/tv_number_pending_payments"
+                    style="@style/TextBase"
+                    android:gravity="center"
+                    android:text="@string/pending_payments_warning"
+                    android:textColor="@color/orange"
+                    android:textSize="@dimen/text_medium"
+                    android:textStyle="bold" />
+
+
+            </LinearLayout>
+
+            <View
+                style="@style/SeparatorHorizontal.White"
+                android:layout_marginBottom="25dp"
+                android:layout_marginTop="15dp" />
+
+            <TextView
+                style="@style/TextBase"
+                android:layout_gravity="left"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="20dp"
+                android:text="@string/operations"
+                android:textColor="@color/grey"
+                android:visibility="gone"/>
+
+            <TextView
+                android:id="@+id/btn_get_boniatos"
+                style="@style/ButtonMes"
+                android:text="@string/get_boniatos"
+                android:visibility="gone"/>
+
+            <TextView
+                android:id="@+id/btn_new_payment"
+                style="@style/ButtonMes.Green"
+                android:layout_marginTop="15dp"
+                android:text="@string/send_payment" />
+
+            <View
+                style="@style/SeparatorHorizontal.White"
+                android:layout_marginBottom="15dp"
+                android:layout_marginTop="25dp" />
+
+            <TextView
+                style="@style/TextBase"
+                android:layout_gravity="left"
+                android:layout_marginBottom="20dp"
+                android:layout_marginLeft="20dp"
+                android:text="@string/consult_statistics"
+                android:textColor="@color/grey"
+                android:visibility="gone"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <View style="@style/XpansorHoriz" />
+
+                <LinearLayout
+                    android:id="@+id/btn_activities"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:minWidth="120dp"
+                    android:background="@color/colorPrimary"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:padding="15dp"
+                    android:layout_marginRight="30dp">
+
+                    <android.support.v7.widget.AppCompatImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:adjustViewBounds="true"
+                        app:tint="@color/colorAccent"
+                        android:src="@mipmap/img_activity" />
+
+                    <TextView
+                        style="@style/TextBase"
+                        android:textColor="@color/colorAccent"
+                        android:layout_marginTop="10dp"
+                        android:gravity="center_horizontal"
+                        android:text="@string/activities" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/btn_movements"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:minWidth="120dp"
+                    android:background="@color/colorPrimary"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:padding="15dp">
+
+                    <android.support.v7.widget.AppCompatImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:adjustViewBounds="true"
+                        app:tint="@color/colorAccent"
+                        android:src="@mipmap/ic_transactions" />
+
+                    <TextView
+                        style="@style/TextBase"
+                        android:textColor="@color/colorAccent"
+                        android:layout_marginTop="10dp"
+                        android:text="@string/transactions" />
+                </LinearLayout>
+
+                <View style="@style/XpansorHoriz" />
+            </LinearLayout>
+
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

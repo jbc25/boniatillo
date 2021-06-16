@@ -1,0 +1,40 @@
+<android.support.v7.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    tools:context=".ui.entities.EntitiesFragment">
+
+    <LinearLayout
+        android:id="@+id/view_search_entities"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        android:orientation="horizontal"
+        android:padding="10dp"
+        android:visibility="gone">
+
+        <EditText
+            android:id="@+id/edit_search_entities"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="@string/search_entities" />
+
+        <android.support.v7.widget.AppCompatButton
+            android:id="@+id/btn_search_entities"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:backgroundTint="@color/colorAccent"
+            android:text="@string/search"
+            android:textColor="@color/colorPrimary" />
+    </LinearLayout>
+
+    <com.acpp.boniatillo.views.NonSwipeableViewPager
+        android:id="@+id/viewpager_entities"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+
+</android.support.v7.widget.LinearLayoutCompat>

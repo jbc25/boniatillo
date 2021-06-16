@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/menuItem_acpp"
+        android:icon="@mipmap/ic_info"
+        android:title="@string/acpp" />
+
+    <item
+        android:id="@+id/menuItem_the_boniatillo"
+        android:icon="@mipmap/ic_drawer_bulb"
+        android:title="@string/the_boniatillo" />
+
+
+    <item android:title="@string/contact">
+        <menu>
+            <item
+                android:id="@+id/nav_contact_email"
+                android:icon="@mipmap/ic_nav_email"
+                android:title="@string/email" />
+
+            <item
+                android:id="@+id/nav_contact_web"
+                android:icon="@mipmap/ic_nav_web"
+                android:title="@string/web" />
+
+            <item
+                android:id="@+id/nav_contact_facebook"
+                android:icon="@mipmap/ic_nav_facebook"
+                android:title="@string/facebook" />
+
+            <item
+                android:id="@+id/nav_contact_twitter"
+                android:icon="@mipmap/ic_nav_twitter"
+                android:title="@string/twitter" />
+
+            <item
+                android:id="@+id/nav_contact_youtube"
+                android:icon="@mipmap/ic_nav_youtube"
+                android:title="@string/youtube" />
+
+        </menu>
+    </item>
+
+
+
+</menu>

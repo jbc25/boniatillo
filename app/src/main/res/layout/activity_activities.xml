@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_default"
+    android:orientation="vertical"
+    tools:context=".ui.activities.ActivitiesActivity">
+
+    <include layout="@layout/toolbar" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recycler_activities"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/view_total_time_spent"/>
+
+        <LinearLayout
+            android:id="@+id/view_total_time_spent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:background="@color/colorPrimary"
+            android:padding="15dp"
+            android:gravity="center"
+            android:layout_alignParentBottom="true">
+
+            <TextView
+                style="@style/TextBase"
+                android:text="@string/total_time_spent"/>
+
+            <TextView
+                android:id="@+id/tv_total_time_spent"
+                style="@style/TextBase.Purple"
+                android:textStyle="bold"
+                android:layout_marginLeft="15dp"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/view_empty"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:visibility="gone"
+            android:layout_centerInParent="true">
+
+            <android.support.v7.widget.AppCompatImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
+                android:src="@mipmap/img_activity"
+                app:tint="@color/blue_brand" />
+
+            <TextView
+                style="@style/TextBase"
+                android:gravity="center_horizontal"
+                android:layout_marginTop="20dp"
+                android:text="@string/activities_empty_message" />
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</android.support.v7.widget.LinearLayoutCompat>

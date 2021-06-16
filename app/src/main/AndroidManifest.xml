@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.acpp.boniatillo">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+
+    <application
+        android:name=".App"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_app_acpp"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_app_acpp"
+        android:supportsRtl="true"
+        android:networkSecurityConfig="@xml/network_security"
+        android:theme="@style/AppTheme.NoActionBar">
+        <activity
+            android:name=".ui.main.MainActivity"
+            android:label="@string/app_name"
+            android:windowSoftInputMode="stateAlwaysHidden">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".ui.entity_info.EntityInfoActivity"
+            android:label="@string/entity_info" />
+        <activity
+            android:name=".ui.intro.IntroActivity"
+            android:theme="@style/Theme.Intro" />
+        <activity
+            android:name=".ui.recipient_select.RecipientSelectActivity"
+            android:label="@string/select_recipient"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity
+            android:name=".ui.auth.login.LoginActivity"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity
+            android:name=".ui.auth.register.RegisterActivity"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity
+            android:name=".ui.new_payment.NewPaymentActivity"
+            android:label="@string/new_payment"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity
+            android:name=".ui.barcode.BarcodeActivity"
+            android:label="@string/qr_code_scan" />
+        <activity android:name=".ui.novelties.detail.NoveltyDetailActivity" />
+        <activity android:name=".ui.info.WebViewActivity" />
+        <activity
+            android:name=".ui.payments.PaymentsActivity"
+            android:label="@string/pending_payments" />
+        <activity
+            android:name=".ui.transactions.TransactionsActivity"
+            android:label="@string/transactions" />
+        <activity
+            android:name=".ui.entity_info.gallery.GalleryFullScreenActivity"
+            android:configChanges="orientation|screenSize"
+            android:theme="@style/AppTheme.NoActionBar.FullScreen" />
+        <activity
+            android:name=".ui.get_boniatos.GetBoniatosActivity"
+            android:label="@string/get_boniatos"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+
+        <service android:name=".messaging.MyFirebaseMessagingService">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_icon"
+            android:resource="@mipmap/ic_acpp_no_circle_small" />
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_color"
+            android:resource="@color/colorPrimary" />
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="@string/maps_api_key" />
+
+        <!-- <meta-data android:name="firebase_crashlytics_collection_enabled" android:value="false" /> -->
+        <activity android:name=".ui.activities.ActivitiesActivity"></activity>
+    </application>
+
+</manifest>

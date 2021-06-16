@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools" xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <style name="TextBase">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@android:color/black</item>
+        <item name="android:textSize">@dimen/text_medium</item>
+        <item name="android:lineSpacingExtra">5dp</item>
+        <item name="fontFamily">@font/sinkinsans</item>
+    </style>
+
+    <style name="TextBase.White">
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+
+    <style name="TextTitleComfortaa" parent="TextBase">
+        <item name="android:textSize">@dimen/text_title_comfortaa</item>
+        <item name="android:fontFamily">@font/comfortaa_bold</item>
+    </style>
+
+    <style name="TextTitleComfortaa.Purple">
+        <item name="android:textColor">@color/purple</item>
+    </style>
+
+
+
+    <style name="TextBase.Purple">
+        <item name="android:textColor">@color/purple</item>
+    </style>
+
+    <style name="EditTextAuth" parent="TextBase">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:textSize">@dimen/text_medium</item>
+        <item name="android:layout_marginTop">10dp</item>
+        <item name="android:background">@drawable/bg_frame_grey</item>
+        <item name="android:padding">10dp</item>
+    </style>
+
+    <style name="EditTextAuth.PinCode" >
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:textSize">@dimen/text_small_2</item>
+        <item name="android:background">@drawable/bg_frame_grey</item>
+        <item name="android:padding">5dp</item>
+        <item name="android:ems">6</item>
+        <item name="android:inputType">numberPassword</item>
+        <item name="android:gravity">center_horizontal</item>
+        <item name="android:maxLength">4</item>
+    </style>
+
+    <style name="TextTransactionsHeader" parent="TextBase.White">
+        <item name="android:textSize">@dimen/text_small_2</item>
+    </style>
+
+</resources>

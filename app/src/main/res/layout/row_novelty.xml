@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:layout_marginTop="2dp"
+    android:layout_marginBottom="2dp"
+    android:padding="5dp"
+    android:background="@drawable/bg_row_novelty">
+
+        <!--<View-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:background="@color/cardBackgroundEvent" />-->
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+            <ImageView
+                android:id="@+id/img_novelty"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:scaleType="centerCrop"
+                android:layout_marginRight="8dp"
+                android:adjustViewBounds="true"
+                android:layout_centerVertical="true"
+                android:alpha="1"/>
+
+            <TextView
+                android:id="@+id/tv_novelty_title"
+                style="@style/TextBase"
+                android:textColor="#000"
+                android:layout_toRightOf="@+id/img_novelty"
+                android:layout_toLeftOf="@+id/img_starred"
+                android:layout_alignTop="@id/img_novelty"
+                android:textSize="@dimen/text_medium"
+                android:textStyle="bold"
+                android:maxLines="1"
+                android:ellipsize="end"
+                android:text="Título"
+                android:layout_marginRight="5dp"/>
+
+            <TextView
+                android:id="@+id/tv_novelty_text_short"
+                style="@style/TextBase"
+                android:layout_alignLeft="@+id/tv_novelty_title"
+                android:layout_below="@+id/tv_novelty_title"
+                android:lines="2"
+                android:textColor="@color/grey"
+                android:ellipsize="end"
+                android:text="Jazz"/>
+
+
+            <TextView
+                android:id="@+id/tv_novelty_date"
+                style="@style/TextBase"
+                android:layout_alignLeft="@+id/tv_novelty_title"
+                android:layout_below="@+id/tv_novelty_text_short"
+                android:layout_alignParentRight="true"
+                android:lines="1"
+                android:ellipsize="end"
+                android:gravity="bottom|right"
+                android:layout_marginTop="5dp"
+                android:text="20/02/2020"/>
+
+        </RelativeLayout>
+
+
+</RelativeLayout>

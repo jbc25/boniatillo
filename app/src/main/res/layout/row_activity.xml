@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:padding="20dp">
+
+
+    <TextView
+        android:id="@+id/tv_activity_title"
+        style="@style/TextTitleComfortaa.Purple"
+        android:gravity="center" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                style="@style/TextBase"
+                android:text="@string/day" />
+
+            <TextView
+                android:id="@+id/tv_activity_day"
+                style="@style/TextBase"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <View style="@style/XpansorHoriz" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                style="@style/TextBase"
+                android:gravity="center"
+                android:text="@string/time" />
+
+            <TextView
+                android:id="@+id/tv_activity_time"
+                style="@style/TextBase"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <View style="@style/XpansorHoriz" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                style="@style/TextBase"
+                android:gravity="center"
+                android:text="@string/duration" />
+
+            <TextView
+                android:id="@+id/tv_activity_time_spent"
+                style="@style/TextBase"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+</android.support.v7.widget.LinearLayoutCompat>
