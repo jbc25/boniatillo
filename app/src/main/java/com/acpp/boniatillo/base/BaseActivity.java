@@ -15,9 +15,6 @@ import android.content.res.Configuration;
 import android.os.Bundle;
 import android.os.Handler;
 import android.preference.PreferenceManager;
-import com.google.android.material.appbar.AppBarLayout;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import android.text.Html;
 import android.util.Log;
 import android.view.MenuItem;
@@ -26,7 +23,8 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.crashlytics.android.Crashlytics;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import com.acpp.boniatillo.App;
 import com.acpp.boniatillo.R;
@@ -39,6 +37,8 @@ import com.acpp.boniatillo.views.custom_dialog.BonusDialog;
 import com.acpp.boniatillo.views.custom_dialog.NewPaymentDialog;
 import com.acpp.boniatillo.views.custom_dialog.OnCloseListener;
 import com.acpp.boniatillo.views.custom_dialog.ProgressDialogMES;
+import com.google.android.material.appbar.AppBarLayout;
+import com.google.firebase.crashlytics.FirebaseCrashlytics;
 
 import es.dmoral.toasty.Toasty;
 
@@ -85,7 +85,7 @@ public abstract class BaseActivity extends AppCompatActivity implements BaseView
 
         Notification notification = Notification.parseNotification(intent.getExtras());
         if (notification == null) {
-            Crashlytics.logException(new IllegalArgumentException(
+            FirebaseCrashlytics.getInstance().recordException(new IllegalArgumentException(
                     "Notification could not be parsed. Extras: " + Util.dumpIntentExtras(intent.getExtras())));
             return;
         }

@@ -3,17 +3,19 @@ package com.acpp.boniatillo;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
+import android.util.Log;
+
+import androidx.core.widget.ContentLoadingProgressBar;
 import androidx.multidex.MultiDex;
 import androidx.multidex.MultiDexApplication;
-import androidx.core.widget.ContentLoadingProgressBar;
-import android.util.Log;
 
 import com.acpp.boniatillo.api.response.Data;
 import com.acpp.boniatillo.base.BaseInteractor;
 import com.acpp.boniatillo.interactor.DeviceInteractor;
 import com.acpp.boniatillo.model.AuthLogin;
 import com.acpp.boniatillo.model.Device;
-import com.google.firebase.iid.FirebaseInstanceId;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.messaging.FirebaseMessaging;
 import com.google.gson.Gson;
 import com.squareup.picasso.LruCache;
 import com.squareup.picasso.OkHttpDownloader;
@@ -66,7 +68,7 @@ public class App extends MultiDexApplication {
         built.setLoggingEnabled(true);
         Picasso.setSingletonInstance(built);
 
-        Log.i(TAG, "token:" + FirebaseInstanceId.getInstance().getToken());
+        FirebaseMessaging.getInstance().getToken().addOnSuccessListener(s -> Log.i(TAG, "token: " + s));
 
 
     }

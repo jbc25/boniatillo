@@ -4,18 +4,12 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import androidx.appcompat.app.AlertDialog;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.crashlytics.android.Crashlytics;
-import com.google.android.gms.common.api.Status;
-import com.google.android.gms.location.places.AutocompleteFilter;
-import com.google.android.gms.location.places.Place;
-import com.google.android.gms.location.places.ui.PlaceAutocompleteFragment;
-import com.google.android.gms.location.places.ui.PlaceSelectionListener;
+import androidx.appcompat.app.AlertDialog;
 
 import com.acpp.boniatillo.R;
 import com.acpp.boniatillo.base.BaseActivity;
@@ -24,6 +18,12 @@ import com.acpp.boniatillo.model.Person;
 import com.acpp.boniatillo.model.User;
 import com.acpp.boniatillo.ui.auth.login.LoginActivity;
 import com.acpp.boniatillo.util.WindowUtils;
+import com.google.android.gms.common.api.Status;
+import com.google.android.gms.location.places.AutocompleteFilter;
+import com.google.android.gms.location.places.Place;
+import com.google.android.gms.location.places.ui.PlaceAutocompleteFragment;
+import com.google.android.gms.location.places.ui.PlaceSelectionListener;
+import com.google.firebase.crashlytics.FirebaseCrashlytics;
 
 import es.dmoral.toasty.Toasty;
 
@@ -141,7 +141,7 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
                 String message = "message: " + status.getStatusMessage() + "\n" +
                         "code: " + status.getStatusCode();
                 alert(message);
-                Crashlytics.logException(new Exception("PlaceAutocompleteFragment fails. Status message: " + status.getStatusMessage()));
+                FirebaseCrashlytics.getInstance().recordException(new Exception("PlaceAutocompleteFragment fails. Status message: " + status.getStatusMessage()));
             }
         });
 

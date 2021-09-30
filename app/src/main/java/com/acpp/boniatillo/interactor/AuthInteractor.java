@@ -2,8 +2,6 @@ package com.acpp.boniatillo.interactor;
 
 import android.content.Context;
 
-import com.crashlytics.android.Crashlytics;
-
 import com.acpp.boniatillo.R;
 import com.acpp.boniatillo.api.AuthApi;
 import com.acpp.boniatillo.api.CustomApiException;
@@ -17,11 +15,9 @@ import com.acpp.boniatillo.base.BaseView;
 import com.acpp.boniatillo.model.AuthLogin;
 import com.acpp.boniatillo.model.User;
 import com.acpp.boniatillo.util.Util;
+import com.google.firebase.crashlytics.FirebaseCrashlytics;
 
 import java.io.IOException;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
 
 import retrofit2.Response;
 import rx.Observer;
@@ -110,7 +106,7 @@ public class AuthInteractor extends BaseInteractor {
                     public void onError(Throwable e) {
 
                         callback.onError(e.getMessage());
-                        Crashlytics.logException(new CustomApiException("onError", e));
+                        FirebaseCrashlytics.getInstance().recordException(new CustomApiException("onError", e));
                     }
 
                     @Override
@@ -128,7 +124,7 @@ public class AuthInteractor extends BaseInteractor {
                             ApiError apiError = ApiError.parse(response);
                             callback.onError(apiError.getMessage());
                             try {
-                                Crashlytics.logException(new CustomApiException(response.errorBody().string()));
+                                FirebaseCrashlytics.getInstance().recordException(new CustomApiException(response.errorBody().string()));
                             } catch (IOException e) {
                                 e.printStackTrace();
                             }

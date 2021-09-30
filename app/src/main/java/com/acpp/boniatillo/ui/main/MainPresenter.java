@@ -5,8 +5,6 @@ import android.content.Intent;
 import android.os.Build;
 import android.util.Log;
 
-import com.google.firebase.iid.FirebaseInstanceId;
-
 import com.acpp.boniatillo.App;
 import com.acpp.boniatillo.api.response.Data;
 import com.acpp.boniatillo.base.BaseActivity;
@@ -18,6 +16,7 @@ import com.acpp.boniatillo.model.AuthLogin;
 import com.acpp.boniatillo.model.Device;
 import com.acpp.boniatillo.model.Notification;
 import com.acpp.boniatillo.model.Payment;
+import com.google.firebase.messaging.FirebaseMessaging;
 
 import java.util.List;
 
@@ -110,18 +109,23 @@ import java.util.List;
 
     private void sendDevice() {
 
-        String model = Build.MANUFACTURER + " " + Build.MODEL;
-        Device device = new Device(model, FirebaseInstanceId.getInstance().getToken());
-        new DeviceInteractor(context,  view).sendDevice(device, new BaseInteractor.BaseApiPOSTCallback() {
-            @Override
-            public void onSuccess(Integer id) {
-                getPrefs().edit().putBoolean(App.SHARED_TOKEN_FIREBASE_SENT, true).commit();
-            }
 
-            @Override
-            public void onError(String message) {
-                Log.e(TAG, "onError: error sending device token");
-            }
+        FirebaseMessaging.getInstance().getToken().addOnSuccessListener(token -> {
+
+            String model = Build.MANUFACTURER + " " + Build.MODEL;
+            Device device = new Device(model, token);
+            new DeviceInteractor(context,  view).sendDevice(device, new BaseInteractor.BaseApiPOSTCallback() {
+                @Override
+                public void onSuccess(Integer id) {
+                    getPrefs().edit().putBoolean(App.SHARED_TOKEN_FIREBASE_SENT, true).commit();
+                }
+
+                @Override
+                public void onError(String message) {
+                    Log.e(TAG, "onError: error sending device token");
+                }
+            });
         });
+
     }
 }
