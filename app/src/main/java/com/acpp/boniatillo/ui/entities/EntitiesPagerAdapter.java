@@ -2,7 +2,7 @@ package com.acpp.boniatillo.ui.entities;
 
 import android.app.Fragment;
 import android.app.FragmentManager;
-import android.support.v13.app.FragmentStatePagerAdapter;
+import androidx.legacy.app.FragmentStatePagerAdapter;
 
 import com.acpp.boniatillo.model.Entity;
 import com.acpp.boniatillo.ui.entities.list.EntitiesListFragment;

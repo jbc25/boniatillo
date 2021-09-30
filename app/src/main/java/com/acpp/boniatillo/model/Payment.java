@@ -1,7 +1,7 @@
 package com.acpp.boniatillo.model;
 
-import android.support.annotation.NonNull;
-import android.support.v4.widget.ContentLoadingProgressBar;
+import androidx.annotation.NonNull;
+import androidx.core.widget.ContentLoadingProgressBar;
 
 import java.text.DateFormat;
 import java.text.DecimalFormat;

@@ -2,7 +2,7 @@ package com.acpp.boniatillo.ui.get_boniatos;
 
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.v7.widget.AppCompatButton;
+import androidx.appcompat.widget.AppCompatButton;
 import android.view.View;
 import android.widget.EditText;
 

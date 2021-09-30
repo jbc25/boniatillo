@@ -3,7 +3,7 @@ package com.acpp.boniatillo.ui.get_boniatos;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.support.v7.app.AlertDialog;
+import androidx.appcompat.app.AlertDialog;
 
 import com.acpp.boniatillo.R;
 import com.acpp.boniatillo.base.BaseInteractor;

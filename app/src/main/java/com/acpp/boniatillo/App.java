@@ -3,9 +3,9 @@ package com.acpp.boniatillo;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
-import android.support.multidex.MultiDex;
-import android.support.multidex.MultiDexApplication;
-import android.support.v4.widget.ContentLoadingProgressBar;
+import androidx.multidex.MultiDex;
+import androidx.multidex.MultiDexApplication;
+import androidx.core.widget.ContentLoadingProgressBar;
 import android.util.Log;
 
 import com.acpp.boniatillo.api.response.Data;

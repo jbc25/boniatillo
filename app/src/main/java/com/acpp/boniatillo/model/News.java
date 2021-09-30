@@ -1,6 +1,6 @@
 package com.acpp.boniatillo.model;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 import com.acpp.boniatillo.api.common.ApiClient;
 
