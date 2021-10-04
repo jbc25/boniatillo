@@ -35,8 +35,7 @@
             android:name=".ui.entity_info.EntityInfoActivity"
             android:label="@string/entity_info" />
         <activity
-            android:name=".ui.intro.IntroActivity"
-            android:theme="@style/Theme.Intro" />
+            android:name=".ui.intro.IntroActivity" />
         <activity
             android:name=".ui.recipient_select.RecipientSelectActivity"
             android:label="@string/select_recipient"
@@ -51,9 +50,7 @@
             android:name=".ui.new_payment.NewPaymentActivity"
             android:label="@string/new_payment"
             android:windowSoftInputMode="stateAlwaysHidden" />
-        <activity
-            android:name=".ui.barcode.BarcodeActivity"
-            android:label="@string/qr_code_scan" />
+
         <activity android:name=".ui.novelties.detail.NoveltyDetailActivity" />
         <activity android:name=".ui.info.WebViewActivity" />
         <activity

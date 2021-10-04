@@ -1,21 +1,18 @@
 package com.acpp.boniatillo.ui.payments;
 
 import android.os.Bundle;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
+
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.acpp.boniatillo.R;
 import com.acpp.boniatillo.base.BaseActivity;
 import com.acpp.boniatillo.model.Payment;
 
 import java.util.List;
-
-import jp.wasabeef.recyclerview.animators.OvershootInLeftAnimator;
-import jp.wasabeef.recyclerview.animators.OvershootInRightAnimator;
-import jp.wasabeef.recyclerview.animators.ScaleInRightAnimator;
 
 public class PaymentsActivity extends BaseActivity implements PaymentsView, PaymentsAdapter.OnItemClickListener {
 
@@ -46,7 +43,7 @@ public class PaymentsActivity extends BaseActivity implements PaymentsView, Paym
 
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerPayments.setLayoutManager(layoutManager);
-        recyclerPayments.setItemAnimator(new OvershootInRightAnimator());
+//        recyclerPayments.setItemAnimator(new OvershootInRightAnimator());
 
         presenter.onCreate();
 
@@ -76,13 +73,13 @@ public class PaymentsActivity extends BaseActivity implements PaymentsView, Paym
 
     @Override
     public void onAcceptPaymentClick(View view, int position) {
-        recyclerPayments.setItemAnimator(new ScaleInRightAnimator());
+//        recyclerPayments.setItemAnimator(new ScaleInRightAnimator());
         presenter.onAcceptPaymentClick(position);
     }
 
     @Override
     public void onCancelClick(View view, int position) {
-        recyclerPayments.setItemAnimator(new OvershootInLeftAnimator());
+//        recyclerPayments.setItemAnimator(new OvershootInLeftAnimator());
         presenter.onCancelPaymentClick(position);
 
     }
