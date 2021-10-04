@@ -46,7 +46,6 @@ android {
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-    implementation project(path: ':LoginView2')
     implementation 'androidx.appcompat:appcompat:1.3.1'
     implementation 'com.google.android.material:material:1.4.0'
     implementation 'androidx.vectordrawable:vectordrawable:1.1.0'
@@ -85,7 +84,9 @@ dependencies {
         transitive = false
     }
     implementation 'com.github.kenglxn.QRGen:android:2.4.0'
-    implementation project(path: ':materialbarcodescanner')
+
+    implementation('com.journeyapps:zxing-android-embedded:4.2.0') { transitive = false }
+    implementation 'com.google.zxing:core:3.3.1'
 }
 
 apply plugin: 'com.google.gms.google-services'

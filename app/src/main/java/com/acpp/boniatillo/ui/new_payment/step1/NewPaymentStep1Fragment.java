@@ -1,11 +1,8 @@
 package com.acpp.boniatillo.ui.new_payment.step1;
 
 
+import android.content.Intent;
 import android.os.Bundle;
-import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.DividerItemDecoration;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -15,13 +12,16 @@ import android.view.ViewGroup;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import com.edwardvanraak.materialbarcodescanner.MaterialBarcodeScanner;
-import com.edwardvanraak.materialbarcodescanner.MaterialBarcodeScannerBuilder;
-import com.google.android.gms.vision.barcode.Barcode;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.acpp.boniatillo.R;
 import com.acpp.boniatillo.base.BaseFragment;
 import com.acpp.boniatillo.model.Entity;
+import com.google.zxing.integration.android.IntentIntegrator;
+import com.google.zxing.integration.android.IntentResult;
 
 import java.util.List;
 
@@ -94,24 +94,28 @@ public class NewPaymentStep1Fragment extends BaseFragment implements NewPaymentS
 
     private void startScan() {
 
-        final MaterialBarcodeScanner materialBarcodeScanner = new MaterialBarcodeScannerBuilder()
-                .withActivity(getActivity())
-                .withEnableAutoFocus(true)
-                .withBleepEnabled(true)
-                .withBackfacingCamera()
-                .withText(getString(R.string.focus_qr_code_entity))
-                .withOnlyQRCodeScanning()
-//                .withCenterTracker()
-                .withResultListener(new MaterialBarcodeScanner.OnResultListener() {
-                    @Override
-                    public void onResult(Barcode barcode) {
-                        presenter.onIdScanned(barcode.rawValue);
-                    }
-                })
-                .build();
-        materialBarcodeScanner.startScan();
+        // https://github.com/journeyapps/zxing-Android-embedded
+        IntentIntegrator.forFragment(this)
+                .setBeepEnabled(true)
+                .setPrompt(getString(R.string.focus_qr_code_entity))
+                .setDesiredBarcodeFormats(IntentIntegrator.QR_CODE)
+                .setOrientationLocked(false)
+                .initiateScan();
+
     }
 
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+
+        IntentResult result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
+        if(result != null) {
+            if(result.getContents() != null) {
+                presenter.onIdScanned(result.getContents());
+            }
+        } else {
+            super.onActivityResult(requestCode, resultCode, data);
+        }
+    }
 
     @Override
     public void onClick(View v) {
