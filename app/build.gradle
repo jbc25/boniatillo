@@ -5,7 +5,7 @@ apply plugin: 'io.fabric'
 android {
     compileSdkVersion 30
     defaultConfig {
-        applicationId 'com.acpp.boniatillo'
+        applicationId 'com.acpp.henar'
         minSdkVersion 17
         targetSdkVersion 30
         versionCode 202
