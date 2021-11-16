@@ -57,7 +57,7 @@ public class App extends MultiDexApplication {
 //        Fabric.with(fabric);
 
 
-//        Crashlytics.logException(new RuntimeException("prueba"));
+
 
 
         Picasso.Builder builder = new Picasso.Builder(this);

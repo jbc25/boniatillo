@@ -6,6 +6,8 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
+
+import com.acpp.boniatillo.BuildConfig;
 import com.google.android.material.bottomnavigation.BottomNavigationItemView;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
@@ -74,6 +76,8 @@ public class MainActivity extends BaseActivity implements BottomNavigationView.O
         btnLogin.setOnClickListener(this);
         btnSignup.setOnClickListener(this);
         btnLogout.setOnClickListener(this);
+
+        ((TextView)findViewById(R.id.tv_app_version)).setText("Version: " + BuildConfig.VERSION_NAME);
     }
 
     @Override
