@@ -1,5 +1,7 @@
 package com.acpp.boniatillo.api.response;
 
+import android.text.TextUtils;
+
 import com.acpp.boniatillo.model.Entity;
 import com.acpp.boniatillo.model.Person;
 
@@ -21,8 +23,10 @@ public class Data {
     public String getName() {
         if (entity != null) {
             return entity.getName();
-        } else {
+        } else if (person != null && !TextUtils.isEmpty(person.getName())) {
             return person.getName();
+        } else {
+            return username;
         }
     }
 
