@@ -61,13 +61,12 @@ public class EntitiesPaymentAdapter extends RecyclerView.Adapter<EntitiesPayment
 
             Picasso.get()
                     .load(logoUrl)
-//              .placeholder(R.mipmap.img_default_grid)
-                    .placeholder(R.mipmap.ic_mes_v2_144_semitransp)
-                    .error(R.mipmap.ic_mes_v2_144)
+                    .placeholder(R.mipmap.ic_app_acpp)
+                    .error(R.mipmap.ic_app_acpp)
                     .resizeDimen(R.dimen.width_image_small, R.dimen.height_image_small)
                     .into(holder.imgEntity);
         } else {
-            holder.imgEntity.setImageResource(R.mipmap.ic_mes_v2_144);
+            holder.imgEntity.setImageResource(R.mipmap.ic_app_acpp);
         }
 
         holder.rootView.setSelected(safePosition == selectedPosition);
@@ -79,22 +78,19 @@ public class EntitiesPaymentAdapter extends RecyclerView.Adapter<EntitiesPayment
 
     private void addClickListener(View view, final int position) {
 
-        view.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        view.setOnClickListener(v -> {
 
-                if (selectedPosition != -1) {
-                    notifyItemChanged(selectedPosition);
-                }
-
-                selectedPosition = position;
-
-                if (itemClickListener != null) {
-                    itemClickListener.onItemClick(v, position);
-                }
-
-                notifyItemChanged(position);
+            if (selectedPosition != -1) {
+                notifyItemChanged(selectedPosition);
             }
+
+            selectedPosition = position;
+
+            if (itemClickListener != null) {
+                itemClickListener.onItemClick(v, position);
+            }
+
+            notifyItemChanged(position);
         });
     }
 
