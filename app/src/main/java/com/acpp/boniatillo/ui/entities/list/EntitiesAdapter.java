@@ -53,7 +53,7 @@ public class EntitiesAdapter extends RecyclerView.Adapter<EntitiesAdapter.ViewHo
         holder.tvEntityName.setText(entity.getName());
         holder.tvEntityCategory.setText(entity.getCategoriesString());
 
-        Picasso.with(context)
+        Picasso.get()
                 .load(entity.getImageCover())
 //                .placeholder(R.mipmap.img_default_grid)
                 .error(R.mipmap.img_mes_header)

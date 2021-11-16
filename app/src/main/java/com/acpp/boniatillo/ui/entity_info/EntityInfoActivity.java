@@ -128,7 +128,7 @@ public class EntityInfoActivity extends BaseActivity implements View.OnClickList
         tvAcceptBoniatos.setText(entity.getMax_percent_payment() + "%");
         tvBonusBoniatos.setText(entity.getBonusPercent(this) + "%");
 
-        Picasso.with(this)
+        Picasso.get()
                 .load(entity.getLogo())
 //                .placeholder(R.mipmap.img_default_grid)
                 .error(R.mipmap.img_mes_header)
