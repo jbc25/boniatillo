@@ -2,6 +2,7 @@ package com.acpp.boniatillo;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.preference.PreferenceManager;
 import android.util.Log;
 
@@ -14,11 +15,10 @@ import com.acpp.boniatillo.base.BaseInteractor;
 import com.acpp.boniatillo.interactor.DeviceInteractor;
 import com.acpp.boniatillo.model.AuthLogin;
 import com.acpp.boniatillo.model.Device;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.messaging.FirebaseMessaging;
 import com.google.gson.Gson;
 import com.squareup.picasso.LruCache;
-import com.squareup.picasso.OkHttpDownloader;
+import com.squareup.picasso.OkHttp3Downloader;
 import com.squareup.picasso.Picasso;
 
 /**
@@ -61,10 +61,11 @@ public class App extends MultiDexApplication {
 
 
         Picasso.Builder builder = new Picasso.Builder(this);
-        builder.downloader(new OkHttpDownloader(this, Integer.MAX_VALUE))
+        builder.listener((picasso, uri, exception) -> Log.e(TAG, "onCreate: Image failed.", exception));
+        builder.downloader(new OkHttp3Downloader(this, Integer.MAX_VALUE))
                 .memoryCache(new LruCache(10000000));
         Picasso built = builder.build();
-//        built.setIndicatorsEnabled(true);
+        built.setIndicatorsEnabled(false);
         built.setLoggingEnabled(true);
         Picasso.setSingletonInstance(built);
 

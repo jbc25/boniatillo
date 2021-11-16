@@ -330,7 +330,7 @@ public class MainActivity extends BaseActivity implements BottomNavigationView.O
             tvUserName.setText(userData.getName());
             if (userData.getEntity() != null) {
                 String logoUrl = userData.getEntity().getLogoThumbnail();
-                Picasso.with(this)
+                Picasso.get()
                         .load(logoUrl)
 //                        .placeholder(R.mipmap.ic_avatar)
                         .transform(new CircleTransform())
