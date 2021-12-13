@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?><!DOCTYPE resources [<!ENTITY currency_name "Henar"><!ENTITY currency_name_plural "Henares"><!ENTITY currency_name_abrev "Hen">]>
 
 <resources>
-    <string name="app_name">Henar</string>
+    <string name="app_name">Henar TSM</string>
 
     <string name="currency_name">&currency_name;</string>
     <string name="currency_name_plural">&currency_name_plural;</string>
