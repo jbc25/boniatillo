@@ -8,6 +8,7 @@
         android:title="@string/search"
         app:showAsAction="always"
         app:iconTint="@color/purple"
-        android:orderInCategory="200"/>
+        android:orderInCategory="200"
+        android:visible="false"/>
 
 </menu>

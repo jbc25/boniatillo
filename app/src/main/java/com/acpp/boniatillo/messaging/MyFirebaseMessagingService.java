@@ -7,6 +7,7 @@ package com.acpp.boniatillo.messaging;
 
 import android.app.NotificationManager;
 import android.app.PendingIntent;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.BitmapFactory;
@@ -117,8 +118,13 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         switch (bundle.getString("type")) {
             case "payment":
             case "transaction":
+
+                String packageName = getApplicationContext().getPackageName();
+                String className = "base.BaseActivity";
+
                 Intent intent = new Intent(App.ACTION_NOTIFICATION_RECEIVED);
                 intent.putExtras(bundle);
+                intent.setComponent(new ComponentName(packageName, packageName + "." + className));
                 sendBroadcast(intent);
                 break;
 

@@ -237,5 +237,6 @@
     <string name="total_time_spent">Tiempo total dedicado:</string>
     <string name="tiempo">Tiempo</string>
     <string name="duration">Duración</string>
+    <string name="no_app_available">No hay una aplicación disponible para manejar esta operación</string>
 
 </resources>
