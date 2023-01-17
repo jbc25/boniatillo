@@ -93,43 +93,28 @@ public class ApiClient {
         HttpLoggingInterceptor loggingInterceptor = new HttpLoggingInterceptor();
         loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
 
-        okhttp3.Interceptor headersInterceptor = new okhttp3.Interceptor() {
-            @Override
-            public okhttp3.Response intercept(Chain chain) throws IOException {
+        okhttp3.Interceptor headersInterceptor = chain -> {
 
-                okhttp3.Request original = chain.request();
+            okhttp3.Request original = chain.request();
 
-                okhttp3.Request.Builder requestBuilder = original.newBuilder();
-                requestBuilder.header("Content-Type", "application/json");
+            okhttp3.Request.Builder requestBuilder = original.newBuilder();
+            requestBuilder.header("Content-Type", "application/json");
 
-                if (AuthLogin.API_KEY != null) {
-                    requestBuilder.header("Authorization", AuthLogin.API_KEY);
-                }
+            if (AuthLogin.API_KEY != null) {
+                requestBuilder.header("Authorization", AuthLogin.API_KEY);
+            }
 //
 //                if (Auth.token != null) {
 //                    requestBuilder.header("nonce", Auth.token);
 //                }
 
-                requestBuilder.method(original.method(), original.body());
-                okhttp3.Request request = requestBuilder.build();
+            requestBuilder.method(original.method(), original.body());
+            okhttp3.Request request = requestBuilder.build();
 
+            okhttp3.Response response = chain.proceed(request);
 
-                okhttp3.Response response = chain.proceed(request);
-
-                int tryCount = 0;
-                while (!response.isSuccessful() && tryCount < 3) {
-
-                    Log.d("intercept", "Request is not successful - " + tryCount);
-
-                    tryCount++;
-
-                    // retry the request
-                    response = chain.proceed(request);
-                }
-
-                // otherwise just pass the original response on
-                return response;
-            }
+            // otherwise just pass the original response on
+            return response;
         };
 
 
@@ -151,8 +136,8 @@ public class ApiClient {
                     }
                 }
         };
-//
-//        // Install the all-trusting trust manager
+
+        // Install the all-trusting trust manager
         SSLContext sslContext = null;
         try {
             sslContext = SSLContext.getInstance("SSL");
