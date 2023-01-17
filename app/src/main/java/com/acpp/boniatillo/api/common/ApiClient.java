@@ -158,13 +158,7 @@ public class ApiClient {
                 .readTimeout(10, TimeUnit.SECONDS)
                 .retryOnConnectionFailure(true)
                 .sslSocketFactory(sslSocketFactory, (X509TrustManager)trustAllCerts[0])
-                .hostnameVerifier(new HostnameVerifier() {
-                    @Override
-                    public boolean verify(String hostname, SSLSession session) {
-                        return true;
-//                        return hostname.equals("triskelapps.com");
-                    }
-                })
+                .hostnameVerifier((hostname, session) -> true)
                 .build();
 
         return client;
