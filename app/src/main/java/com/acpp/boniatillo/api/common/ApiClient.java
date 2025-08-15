@@ -93,61 +93,76 @@ public class ApiClient {
         HttpLoggingInterceptor loggingInterceptor = new HttpLoggingInterceptor();
         loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
 
-        okhttp3.Interceptor headersInterceptor = chain -> {
+        okhttp3.Interceptor headersInterceptor = new okhttp3.Interceptor() {
+            @Override
+            public okhttp3.Response intercept(Chain chain) throws IOException {
 
-            okhttp3.Request original = chain.request();
+                okhttp3.Request original = chain.request();
 
-            okhttp3.Request.Builder requestBuilder = original.newBuilder();
-            requestBuilder.header("Content-Type", "application/json");
+                okhttp3.Request.Builder requestBuilder = original.newBuilder();
+                requestBuilder.header("Content-Type", "application/json");
 
-            if (AuthLogin.API_KEY != null) {
-                requestBuilder.header("Authorization", AuthLogin.API_KEY);
-            }
+                if (AuthLogin.API_KEY != null) {
+                    requestBuilder.header("Authorization", AuthLogin.API_KEY);
+                }
 //
 //                if (Auth.token != null) {
 //                    requestBuilder.header("nonce", Auth.token);
 //                }
 
-            requestBuilder.method(original.method(), original.body());
-            okhttp3.Request request = requestBuilder.build();
+                requestBuilder.method(original.method(), original.body());
+                okhttp3.Request request = requestBuilder.build();
 
-            okhttp3.Response response = chain.proceed(request);
 
-            // otherwise just pass the original response on
-            return response;
+                okhttp3.Response response = chain.proceed(request);
+
+                int tryCount = 0;
+                while (!response.isSuccessful() && tryCount < 3) {
+
+                    Log.d("intercept", "Request is not successful - " + tryCount);
+
+                    tryCount++;
+
+                    // retry the request
+                    response = chain.proceed(request);
+                }
+
+                // otherwise just pass the original response on
+                return response;
+            }
         };
 
 
         // Create a trust manager that does not validate certificate chains
-        final TrustManager[] trustAllCerts = new TrustManager[] {
-                new X509TrustManager() {
-                    @Override
-                    public void checkClientTrusted(java.security.cert.X509Certificate[] chain, String authType) throws CertificateException {
-                    }
-
-
-                    @Override
-                    public void checkServerTrusted(java.security.cert.X509Certificate[] chain, String authType) throws CertificateException {
-                    }
-
-                    @Override
-                    public java.security.cert.X509Certificate[] getAcceptedIssuers() {
-                        return new java.security.cert.X509Certificate[]{};
-                    }
-                }
-        };
-
-        // Install the all-trusting trust manager
-        SSLContext sslContext = null;
-        try {
-            sslContext = SSLContext.getInstance("SSL");
-            sslContext.init(null, trustAllCerts, new java.security.SecureRandom());
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        // Create an ssl socket factory with our all-trusting manager
-        final SSLSocketFactory sslSocketFactory = sslContext.getSocketFactory();
+//        final TrustManager[] trustAllCerts = new TrustManager[] {
+//                new X509TrustManager() {
+//                    @Override
+//                    public void checkClientTrusted(java.security.cert.X509Certificate[] chain, String authType) throws CertificateException {
+//                    }
+//
+//
+//                    @Override
+//                    public void checkServerTrusted(java.security.cert.X509Certificate[] chain, String authType) throws CertificateException {
+//                    }
+//
+//                    @Override
+//                    public java.security.cert.X509Certificate[] getAcceptedIssuers() {
+//                        return new java.security.cert.X509Certificate[]{};
+//                    }
+//                }
+//        };
+//
+//        // Install the all-trusting trust manager
+//        SSLContext sslContext = null;
+//        try {
+//            sslContext = SSLContext.getInstance("SSL");
+//            sslContext.init(null, trustAllCerts, new java.security.SecureRandom());
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//
+//        // Create an ssl socket factory with our all-trusting manager
+//        final SSLSocketFactory sslSocketFactory = sslContext.getSocketFactory();
 
 
 
@@ -157,8 +172,14 @@ public class ApiClient {
                 .connectTimeout(20, TimeUnit.SECONDS)
                 .readTimeout(10, TimeUnit.SECONDS)
                 .retryOnConnectionFailure(true)
-                .sslSocketFactory(sslSocketFactory, (X509TrustManager)trustAllCerts[0])
-                .hostnameVerifier((hostname, session) -> true)
+//                .sslSocketFactory(sslSocketFactory, (X509TrustManager)trustAllCerts[0])
+                .hostnameVerifier(new HostnameVerifier() {
+                    @Override
+                    public boolean verify(String hostname, SSLSession session) {
+                        return true;
+//                        return hostname.equals("triskelapps.com");
+                    }
+                })
                 .build();
 
         return client;

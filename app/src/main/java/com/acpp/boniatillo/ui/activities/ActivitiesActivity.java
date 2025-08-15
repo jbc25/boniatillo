@@ -1,10 +1,16 @@
 package com.acpp.boniatillo.ui.activities;
 
 import android.os.Bundle;
+
+import androidx.activity.EdgeToEdge;
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import android.view.View;
+import android.widget.FrameLayout;
 import android.widget.TextView;
 
 import com.acpp.boniatillo.R;
@@ -20,6 +26,7 @@ public class ActivitiesActivity extends BaseActivity implements ActivitiesView {
     private View viewEmpty;
     private View viewTotalTimeSpent;
     private TextView tvTotalTimeSpent;
+    private FrameLayout frameToolbar;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -27,6 +34,7 @@ public class ActivitiesActivity extends BaseActivity implements ActivitiesView {
         setBasePresenter(presenter);
 
         super.onCreate(savedInstanceState);
+        EdgeToEdge.enable(this);
         setContentView(R.layout.activity_activities);
         configureSecondLevelActivity();
         setToolbarTitle(R.string.activities);
@@ -35,6 +43,17 @@ public class ActivitiesActivity extends BaseActivity implements ActivitiesView {
         viewEmpty = findViewById(R.id.view_empty);
         viewTotalTimeSpent = findViewById(R.id.view_total_time_spent);
         tvTotalTimeSpent = (TextView) findViewById(R.id.tv_total_time_spent);
+        frameToolbar = findViewById(R.id.frame_toolbar);
+
+        ViewCompat.setOnApplyWindowInsetsListener(frameToolbar, (v, insets) -> {
+            Insets bars = insets.getInsets(
+                    WindowInsetsCompat.Type.systemBars()
+                            | WindowInsetsCompat.Type.displayCutout()
+            );
+            v.setPadding(bars.left, 0, bars.right, bars.bottom);
+            frameToolbar.setPadding(0, bars.top, 0, 0);
+            return WindowInsetsCompat.CONSUMED;
+        });
 
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerActivities.setLayoutManager(layoutManager);

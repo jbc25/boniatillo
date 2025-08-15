@@ -1,11 +1,17 @@
 package com.acpp.boniatillo.ui.transactions;
 
 import android.os.Bundle;
+
+import androidx.activity.EdgeToEdge;
 import androidx.core.content.ContextCompat;
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import android.view.View;
+import android.widget.FrameLayout;
 
 import com.acpp.boniatillo.R;
 import com.acpp.boniatillo.base.BaseActivity;
@@ -19,10 +25,12 @@ public class TransactionsActivity extends BaseActivity implements TransactionsVi
     private RecyclerView recyclerTransactions;
     private TransactionsAdapter adapter;
     private View viewEmptyTransactions;
+    private FrameLayout frameToolbar;
 
     private void findViews() {
         recyclerTransactions = (RecyclerView) findViewById(R.id.recycler_transactions);
         viewEmptyTransactions = findViewById(R.id.view_empty_transactions);
+        frameToolbar = findViewById(R.id.frame_toolbar);
     }
 
     @Override
@@ -31,10 +39,21 @@ public class TransactionsActivity extends BaseActivity implements TransactionsVi
         setBasePresenter(presenter);
 
         super.onCreate(savedInstanceState);
+        EdgeToEdge.enable(this);
         setContentView(R.layout.activity_transactions);
 
         configureSecondLevelActivity();
         findViews();
+
+        ViewCompat.setOnApplyWindowInsetsListener(frameToolbar, (v, insets) -> {
+            Insets bars = insets.getInsets(
+                    WindowInsetsCompat.Type.systemBars()
+                            | WindowInsetsCompat.Type.displayCutout()
+            );
+            v.setPadding(bars.left, 0, bars.right, bars.bottom);
+            frameToolbar.setPadding(0, bars.top, 0, 0);
+            return WindowInsetsCompat.CONSUMED;
+        });
 
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerTransactions.setLayoutManager(layoutManager);

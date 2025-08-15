@@ -8,8 +8,14 @@
     android:background="@color/background_default"
     tools:context=".ui.entity_info.EntityInfoActivity">
 
-    <include layout="@layout/toolbar" />
+    <FrameLayout
+        android:id="@+id/frame_toolbar"
+        android:background="@color/colorPrimary"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
+        <include layout="@layout/toolbar" />
+    </FrameLayout>
 
     <ScrollView
         android:layout_width="match_parent"

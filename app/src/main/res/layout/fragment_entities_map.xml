@@ -5,9 +5,8 @@
     tools:context=".ui.entities.map.EntitiesMapFragment">
 
 
-    <org.osmdroid.views.MapView
+    <org.maplibre.android.maps.MapView
         android:id="@+id/mapview"
-        tilesource="Mapnik"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 

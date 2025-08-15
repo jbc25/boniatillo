@@ -11,7 +11,13 @@ import android.webkit.WebSettings;
 import android.webkit.WebSettings.PluginState;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.FrameLayout;
 import android.widget.ProgressBar;
+
+import androidx.activity.EdgeToEdge;
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
 
 import com.acpp.boniatillo.R;
 import com.acpp.boniatillo.base.BaseActivity;
@@ -29,6 +35,7 @@ public class WebViewActivity extends BaseActivity {
 
     private WebView webView;
     private ProgressBar progressWebview;
+    private FrameLayout frameToolbar;
 
 
     public static void startRemoteUrl(Context context, String title, String url) {
@@ -48,15 +55,27 @@ public class WebViewActivity extends BaseActivity {
     private void findViews() {
         webView = (WebView) findViewById(R.id.webview);
         progressWebview = (ProgressBar) findViewById(R.id.progress_webview);
+        frameToolbar = findViewById(R.id.frame_toolbar);
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        EdgeToEdge.enable(this);
         setContentView(R.layout.activity_webview);
 
         findViews();
+
+        ViewCompat.setOnApplyWindowInsetsListener(frameToolbar, (v, insets) -> {
+            Insets bars = insets.getInsets(
+                    WindowInsetsCompat.Type.systemBars()
+                            | WindowInsetsCompat.Type.displayCutout()
+            );
+            v.setPadding(bars.left, 0, bars.right, bars.bottom);
+            frameToolbar.setPadding(0, bars.top, 0, 0);
+            return WindowInsetsCompat.CONSUMED;
+        });
 
         configureSecondLevelActivity();
         configWebView();

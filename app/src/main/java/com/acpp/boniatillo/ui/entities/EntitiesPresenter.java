@@ -1,6 +1,7 @@
 package com.acpp.boniatillo.ui.entities;
 
 import android.content.Context;
+import android.util.Log;
 
 import com.acpp.boniatillo.R;
 import com.acpp.boniatillo.base.BasePresenter;
@@ -54,12 +55,15 @@ public class EntitiesPresenter extends BasePresenter {
 
         view.setRefreshing(true);
 
+        Log.i(TAG, ">> refreshData: start");
         entityInteractor.getEntities(new EntityInteractor.Callback() {
 
             @Override
             public void onResponse(List<Entity> entitiesApi) {
                 entities.clear();
                 entities.addAll(entitiesApi);
+
+                Log.i(TAG, ">> refreshData: end. entities size: " + entities.size());
 
                 view.showEntities(entities);
             }
@@ -91,6 +95,10 @@ public class EntitiesPresenter extends BasePresenter {
                 view.toast(error);
             }
         });
+    }
+
+    public List<Entity> getEntities() {
+        return entities;
     }
 
     public void onEntityClicked(int position, String id) {

@@ -25,6 +25,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.content.ContextCompat;
 
 import com.acpp.boniatillo.App;
 import com.acpp.boniatillo.R;
@@ -181,7 +182,8 @@ public abstract class BaseActivity extends AppCompatActivity implements BaseView
     protected void onResume() {
         super.onResume();
 
-        registerReceiver(notificationReceiver, new IntentFilter(App.ACTION_NOTIFICATION_RECEIVED));
+        ContextCompat.registerReceiver(this, notificationReceiver,
+                new IntentFilter(App.ACTION_NOTIFICATION_RECEIVED), ContextCompat.RECEIVER_NOT_EXPORTED);
     }
 
     @Override
