@@ -1,5 +1,6 @@
 package com.acpp.boniatillo.ui.new_payment;
 
+import android.annotation.SuppressLint;
 import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -7,6 +8,11 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import androidx.activity.EdgeToEdge;
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
 
 import com.acpp.boniatillo.R;
 import com.acpp.boniatillo.base.BaseActivity;
@@ -28,6 +34,7 @@ public class NewPaymentActivity extends BaseActivity implements NewPaymentView, 
     private NewPaymentStep2Fragment fragmentStep2;
     private NewPaymentStep3Fragment fragmentStep3;
     private View[] stepsViews;
+    private FrameLayout frameToolbar;
 
 
     private void findViews() {
@@ -36,6 +43,7 @@ public class NewPaymentActivity extends BaseActivity implements NewPaymentView, 
         tvStep2 = (TextView)findViewById( R.id.tv_step_2 );
         tvStep3 = (TextView)findViewById( R.id.tv_step_3 );
         framePaymentSection = (FrameLayout)findViewById( R.id.frame_payment_section );
+        frameToolbar = (FrameLayout) findViewById(R.id.frame_toolbar);
 
         stepsViews = new View[]{tvStep1, tvStep2, tvStep3};
 
@@ -52,10 +60,20 @@ public class NewPaymentActivity extends BaseActivity implements NewPaymentView, 
         setBasePresenter(presenter);
 
         super.onCreate(savedInstanceState);
+        EdgeToEdge.enable(this);
         setContentView(R.layout.activity_new_payment);
         findViews();
         configureSecondLevelActivity();
 
+        ViewCompat.setOnApplyWindowInsetsListener(frameToolbar, (v, insets) -> {
+            Insets bars = insets.getInsets(
+                    WindowInsetsCompat.Type.systemBars()
+                            | WindowInsetsCompat.Type.displayCutout()
+            );
+            v.setPadding(bars.left, 0, bars.right, bars.bottom);
+            frameToolbar.setPadding(0, bars.top, 0, 0);
+            return WindowInsetsCompat.CONSUMED;
+        });
 
         FragmentTransaction ft = getFragmentManager().beginTransaction();
         fragmentStep1 = new NewPaymentStep1Fragment();
@@ -126,6 +144,7 @@ public class NewPaymentActivity extends BaseActivity implements NewPaymentView, 
         }
     }
 
+    @SuppressLint("MissingSuperCall")
     @Override
     public void onBackPressed() {
         presenter.onBackPressed();

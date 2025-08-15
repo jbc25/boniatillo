@@ -26,6 +26,7 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -63,6 +64,7 @@ public class MainActivity extends BaseActivity implements BottomNavigationView.O
     private ImageView imgAvatar;
     private TextView tvPendingPaymentsBadge;
     private View root;
+    private FrameLayout frameToolbar;
 
     private void findViews() {
 
@@ -81,6 +83,8 @@ public class MainActivity extends BaseActivity implements BottomNavigationView.O
         viewUserInfo = navigationView.getHeaderView(0).findViewById(R.id.view_user_info);
         btnLogout = navigationView.getHeaderView(0).findViewById(R.id.btn_logout);
         imgAvatar = (ImageView) navigationView.getHeaderView(0).findViewById(R.id.img_avatar);
+
+        frameToolbar = findViewById(R.id.frame_toolbar);
 
         btnLogin.setOnClickListener(this);
         btnSignup.setOnClickListener(this);
@@ -106,12 +110,13 @@ public class MainActivity extends BaseActivity implements BottomNavigationView.O
         configureDrawerLayout();
         configureBottomNavView();
 
-        ViewCompat.setOnApplyWindowInsetsListener(root, (v, insets) -> {
+        ViewCompat.setOnApplyWindowInsetsListener(frameToolbar, (v, insets) -> {
             Insets bars = insets.getInsets(
                     WindowInsetsCompat.Type.systemBars()
                             | WindowInsetsCompat.Type.displayCutout()
             );
-            v.setPadding(bars.left, bars.top, bars.right, bars.bottom);
+            v.setPadding(bars.left, 0, bars.right, bars.bottom);
+            frameToolbar.setPadding(0, bars.top, 0, 0);
             return WindowInsetsCompat.CONSUMED;
         });
 

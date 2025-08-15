@@ -3,10 +3,16 @@ package com.acpp.boniatillo.ui.entity_info;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+
+import androidx.activity.EdgeToEdge;
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import android.view.View;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -38,6 +44,7 @@ public class EntityInfoActivity extends BaseActivity implements View.OnClickList
     private ImageView btnRrssTwitter;
     private ImageView btnRrssFacebook;
     private ImageView btnRrssInstagram;
+    private FrameLayout frameToolbar;
 
 
     private void findViews() {
@@ -57,6 +64,8 @@ public class EntityInfoActivity extends BaseActivity implements View.OnClickList
         btnRrssFacebook = (ImageView)findViewById( R.id.btn_rrss_facebook );
         btnRrssInstagram = (ImageView)findViewById( R.id.btn_rrss_instagram );
 
+        frameToolbar = findViewById(R.id.frame_toolbar);
+
         btnNewPayment.setOnClickListener(this);
         imgHeart.setOnClickListener(this);
 
@@ -75,10 +84,21 @@ public class EntityInfoActivity extends BaseActivity implements View.OnClickList
         setBasePresenter(presenter);
 
         super.onCreate(savedInstanceState);
+        EdgeToEdge.enable(this);
         setContentView(R.layout.activity_entity_info);
 
         findViews();
         configureSecondLevelActivity();
+
+        ViewCompat.setOnApplyWindowInsetsListener(frameToolbar, (v, insets) -> {
+            Insets bars = insets.getInsets(
+                    WindowInsetsCompat.Type.systemBars()
+                            | WindowInsetsCompat.Type.displayCutout()
+            );
+            v.setPadding(bars.left, 0, bars.right, bars.bottom);
+            frameToolbar.setPadding(0, bars.top, 0, 0);
+            return WindowInsetsCompat.CONSUMED;
+        });
 
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerOffers.setLayoutManager(layoutManager);

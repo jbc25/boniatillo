@@ -137,7 +137,7 @@ public class EntitiesMapFragment extends BaseFragment implements EntitiesView {
                     .withTextSize(14.0f)
                     .withTextOffset(new Float[]{0.0f, 1.3f}) // Offset del texto respecto al icono
                     .withTextAnchor("top")
-                    .withTextColor("black")
+                    .withTextColor("#0080D2")
                     .withTextHaloColor("white")
                     .withTextHaloWidth(2.0f);
 

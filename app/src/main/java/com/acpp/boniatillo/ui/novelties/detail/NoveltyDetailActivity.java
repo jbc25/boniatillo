@@ -5,8 +5,14 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import androidx.activity.EdgeToEdge;
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
 
 import com.squareup.picasso.Picasso;
 
@@ -27,6 +33,7 @@ public class NoveltyDetailActivity extends BaseActivity implements NoveltyDetail
     private ImageView imgNovelty;
     private TextView tvNoveltyDescription;
     private TextView btnMoreInfo;
+    private FrameLayout frameToolbar;
 
     private void findViews() {
         tvNoveltyTitle = (TextView)findViewById( R.id.tv_novelty_title );
@@ -34,6 +41,7 @@ public class NoveltyDetailActivity extends BaseActivity implements NoveltyDetail
         imgNovelty = (ImageView)findViewById( R.id.img_novelty );
         tvNoveltyDescription = (TextView)findViewById( R.id.tv_novelty_description );
         btnMoreInfo = (TextView)findViewById( R.id.btn_more_info );
+        frameToolbar = (FrameLayout) findViewById(R.id.frame_toolbar);
     }
 
 
@@ -43,8 +51,19 @@ public class NoveltyDetailActivity extends BaseActivity implements NoveltyDetail
         setBasePresenter(presenter);
 
         super.onCreate(savedInstanceState);
+        EdgeToEdge.enable(this);
         setContentView(R.layout.activity_novelty_detail);
         findViews();
+
+        ViewCompat.setOnApplyWindowInsetsListener(frameToolbar, (v, insets) -> {
+            Insets bars = insets.getInsets(
+                    WindowInsetsCompat.Type.systemBars()
+                            | WindowInsetsCompat.Type.displayCutout()
+            );
+            v.setPadding(bars.left, 0, bars.right, bars.bottom);
+            frameToolbar.setPadding(0, bars.top, 0, 0);
+            return WindowInsetsCompat.CONSUMED;
+        });
         configureSecondLevelActivity();
 
 

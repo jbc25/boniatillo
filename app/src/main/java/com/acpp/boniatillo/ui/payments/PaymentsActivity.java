@@ -2,9 +2,14 @@ package com.acpp.boniatillo.ui.payments;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 
+import androidx.activity.EdgeToEdge;
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -21,11 +26,13 @@ public class PaymentsActivity extends BaseActivity implements PaymentsView, Paym
     private LinearLayout viewPayments;
     private RecyclerView recyclerPayments;
     private ProgressBar progressPayments;
+    private FrameLayout frameToolbar;
 
     private void findViews() {
         viewPayments = (LinearLayout)findViewById( R.id.view_payments );
         recyclerPayments = (RecyclerView)findViewById( R.id.recycler_payments );
         progressPayments = (ProgressBar)findViewById( R.id.progress_payments );
+        frameToolbar = (FrameLayout) findViewById(R.id.frame_toolbar);
     }
 
 
@@ -36,10 +43,21 @@ public class PaymentsActivity extends BaseActivity implements PaymentsView, Paym
         setBasePresenter(presenter);
 
         super.onCreate(savedInstanceState);
+        EdgeToEdge.enable(this);
         setContentView(R.layout.activity_paments);
 
         configureSecondLevelActivity();
         findViews();
+
+        ViewCompat.setOnApplyWindowInsetsListener(frameToolbar, (v, insets) -> {
+            Insets bars = insets.getInsets(
+                    WindowInsetsCompat.Type.systemBars()
+                            | WindowInsetsCompat.Type.displayCutout()
+            );
+            v.setPadding(bars.left, 0, bars.right, bars.bottom);
+            frameToolbar.setPadding(0, bars.top, 0, 0);
+            return WindowInsetsCompat.CONSUMED;
+        });
 
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerPayments.setLayoutManager(layoutManager);
