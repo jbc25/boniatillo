@@ -1,16 +1,23 @@
 package com.acpp.boniatillo.ui.main;
 
+import android.annotation.SuppressLint;
 import android.app.Fragment;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+
+import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
 
 import com.acpp.boniatillo.BuildConfig;
 import com.google.android.material.bottomnavigation.BottomNavigationItemView;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
+
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AlertDialog;
@@ -55,9 +62,11 @@ public class MainActivity extends BaseActivity implements BottomNavigationView.O
     private MainPresenter presenter;
     private ImageView imgAvatar;
     private TextView tvPendingPaymentsBadge;
+    private View root;
 
     private void findViews() {
 
+        root = findViewById(R.id.container);
 
         bottomNavView = (BottomNavigationView) findViewById(R.id.navigation_bottom_view);
         bottomNavView.setOnNavigationItemSelectedListener(this);
@@ -87,6 +96,9 @@ public class MainActivity extends BaseActivity implements BottomNavigationView.O
         setBasePresenter(presenter);
 
         super.onCreate(savedInstanceState);
+
+        EdgeToEdge.enable(this);
+
         setContentView(R.layout.activity_main);
 
         findViews();
@@ -94,6 +106,14 @@ public class MainActivity extends BaseActivity implements BottomNavigationView.O
         configureDrawerLayout();
         configureBottomNavView();
 
+        ViewCompat.setOnApplyWindowInsetsListener(root, (v, insets) -> {
+            Insets bars = insets.getInsets(
+                    WindowInsetsCompat.Type.systemBars()
+                            | WindowInsetsCompat.Type.displayCutout()
+            );
+            v.setPadding(bars.left, bars.top, bars.right, bars.bottom);
+            return WindowInsetsCompat.CONSUMED;
+        });
 
         if (DebugHelper.SHORTCUT_ACTIVITY != null) {
             startActivity(new Intent(this, DebugHelper.SHORTCUT_ACTIVITY));
@@ -146,7 +166,7 @@ public class MainActivity extends BaseActivity implements BottomNavigationView.O
     private void configureBottomNavView() {
 
         View v = bottomNavView.findViewById(R.id.navigation_wallet);
-        BottomNavigationItemView itemView = (BottomNavigationItemView) v;
+        @SuppressLint("RestrictedApi") BottomNavigationItemView itemView = (BottomNavigationItemView) v;
 
         View view = LayoutInflater.from(this)
                 .inflate(R.layout.view_pending_payments_badge, bottomNavView, false);
