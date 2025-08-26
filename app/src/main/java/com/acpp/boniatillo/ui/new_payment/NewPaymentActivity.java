@@ -65,7 +65,7 @@ public class NewPaymentActivity extends BaseActivity implements NewPaymentView, 
         findViews();
         configureSecondLevelActivity();
 
-        ViewCompat.setOnApplyWindowInsetsListener(frameToolbar, (v, insets) -> {
+        ViewCompat.setOnApplyWindowInsetsListener(getWindow().getDecorView(), (v, insets) -> {
             Insets bars = insets.getInsets(
                     WindowInsetsCompat.Type.systemBars()
                             | WindowInsetsCompat.Type.displayCutout()

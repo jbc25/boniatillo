@@ -67,7 +67,7 @@ public class WebViewActivity extends BaseActivity {
 
         findViews();
 
-        ViewCompat.setOnApplyWindowInsetsListener(frameToolbar, (v, insets) -> {
+        ViewCompat.setOnApplyWindowInsetsListener(getWindow().getDecorView(), (v, insets) -> {
             Insets bars = insets.getInsets(
                     WindowInsetsCompat.Type.systemBars()
                             | WindowInsetsCompat.Type.displayCutout()

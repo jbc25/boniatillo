@@ -44,7 +44,7 @@ public class RecipientSelectActivity extends BaseActivity implements TabLayout.O
         configureSecondLevelActivity();
         findViews();
 
-        ViewCompat.setOnApplyWindowInsetsListener(frameToolbar, (v, insets) -> {
+        ViewCompat.setOnApplyWindowInsetsListener(getWindow().getDecorView(), (v, insets) -> {
             Insets bars = insets.getInsets(
                     WindowInsetsCompat.Type.systemBars()
                             | WindowInsetsCompat.Type.displayCutout()
