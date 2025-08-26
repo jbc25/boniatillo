@@ -1,5 +1,5 @@
 apply plugin: 'com.android.application'
-apply plugin: 'io.fabric'
+apply plugin: 'com.google.firebase.crashlytics'
 
 
 android {
@@ -7,14 +7,6 @@ android {
 
     defaultConfig {
         applicationId 'com.acpp.henar'
-
-        minSdkVersion 19
-        targetSdkVersion 33
-        compileSdk 33
-
-        versionCode 206
-        versionName '2.0.6'
-        applicationId 'com.acpp.boniatillo'
 
         minSdkVersion 23
         targetSdkVersion 35
@@ -40,7 +32,7 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
     }
 
-    namespace 'com.acpp.henar'
+    namespace 'com.acpp.boniatillo'
 
     lint {
         abortOnError false

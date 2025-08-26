@@ -43,7 +43,8 @@ import java.util.List;
 public class EntitiesMapFragment extends BaseFragment implements EntitiesView {
 
 
-    private final LatLng latLngStart = new LatLng(40.345825, -3.694815);
+//    private final LatLng latLngStart = new LatLng(40.345825, -3.694815); // Villaverde
+    private final LatLng latLngStart = new LatLng(40.484496650657995, -3.369288575547182); // Alcalá
     private EntitiesPresenter presenter;
     private EntitiesPagerAdapter.EntityListener entityListener;
     private MapView mapView;
