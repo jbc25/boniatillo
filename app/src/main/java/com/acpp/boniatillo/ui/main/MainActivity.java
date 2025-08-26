@@ -111,7 +111,7 @@ public class MainActivity extends BaseActivity implements BottomNavigationView.O
         configureDrawerLayout();
         configureBottomNavView();
 
-        ViewCompat.setOnApplyWindowInsetsListener(frameToolbar, (v, insets) -> {
+        ViewCompat.setOnApplyWindowInsetsListener(getWindow().getDecorView(), (v, insets) -> {
             Insets bars = insets.getInsets(
                     WindowInsetsCompat.Type.systemBars()
                             | WindowInsetsCompat.Type.displayCutout()

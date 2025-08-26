@@ -45,7 +45,7 @@ public class ActivitiesActivity extends BaseActivity implements ActivitiesView {
         tvTotalTimeSpent = (TextView) findViewById(R.id.tv_total_time_spent);
         frameToolbar = findViewById(R.id.frame_toolbar);
 
-        ViewCompat.setOnApplyWindowInsetsListener(frameToolbar, (v, insets) -> {
+        ViewCompat.setOnApplyWindowInsetsListener(getWindow().getDecorView(), (v, insets) -> {
             Insets bars = insets.getInsets(
                     WindowInsetsCompat.Type.systemBars()
                             | WindowInsetsCompat.Type.displayCutout()
