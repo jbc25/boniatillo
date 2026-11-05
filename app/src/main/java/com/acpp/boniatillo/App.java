@@ -1,5 +1,6 @@
 package com.acpp.boniatillo;
 
+import android.app.Application;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.net.Uri;
@@ -7,8 +8,6 @@ import android.preference.PreferenceManager;
 import android.util.Log;
 
 import androidx.core.widget.ContentLoadingProgressBar;
-import androidx.multidex.MultiDex;
-import androidx.multidex.MultiDexApplication;
 
 import com.acpp.boniatillo.api.response.Data;
 import com.acpp.boniatillo.base.BaseInteractor;
@@ -25,7 +24,7 @@ import com.squareup.picasso.Picasso;
  * Created by julio on 17/06/16.
  */
 
-public class App extends MultiDexApplication {
+public class App extends Application {
 
     private static final String TAG = "App";
 
@@ -72,13 +71,6 @@ public class App extends MultiDexApplication {
         FirebaseMessaging.getInstance().getToken().addOnSuccessListener(s -> Log.i(TAG, "token: " + s));
 
 
-    }
-
-    @Override
-    protected void attachBaseContext(Context base) {
-        super.attachBaseContext(base);
-
-        MultiDex.install(this);
     }
 
     public static SharedPreferences getPrefs(Context context) {

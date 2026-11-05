@@ -73,10 +73,9 @@ public class NewPaymentStep3Fragment extends BaseFragment implements PinEntryEdi
     @Override
     public void onClick(View v) {
 
-        switch (v.getId()) {
-            case R.id.btn_confirm_payment:
-                confirmPayment();
-                break;
+        int id = v.getId();
+        if (id == R.id.btn_confirm_payment) {
+            confirmPayment();
         }
     }
 

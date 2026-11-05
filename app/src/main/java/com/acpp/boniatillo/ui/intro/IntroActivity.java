@@ -49,10 +49,9 @@ public class IntroActivity extends BaseActivity implements ViewPager.OnPageChang
     @Override
     public void onClick(View v) {
 
-        switch (v.getId()) {
-            case R.id.btn_intro_next:
-                viewPager.setCurrentItem(viewPager.getCurrentItem()+1, true);
-                break;
+        int id = v.getId();
+        if (id == R.id.btn_intro_next) {
+            viewPager.setCurrentItem(viewPager.getCurrentItem()+1, true);
         }
 
     }

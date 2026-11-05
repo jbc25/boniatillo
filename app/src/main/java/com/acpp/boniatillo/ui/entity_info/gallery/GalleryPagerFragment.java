@@ -107,15 +107,11 @@ public class GalleryPagerFragment extends Fragment implements ViewPager.OnPageCh
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.img_arrow_left:
-                viewpagerGallery.setCurrentItem(viewpagerGallery.getCurrentItem() - 1, true);
-                break;
-
-            case R.id.img_arrow_right:
-                viewpagerGallery.setCurrentItem(viewpagerGallery.getCurrentItem() + 1, true);
-                break;
-
+        int id = v.getId();
+        if (id == R.id.img_arrow_left) {
+            viewpagerGallery.setCurrentItem(viewpagerGallery.getCurrentItem() - 1, true);
+        } else if (id == R.id.img_arrow_right) {
+            viewpagerGallery.setCurrentItem(viewpagerGallery.getCurrentItem() + 1, true);
         }
     }
 

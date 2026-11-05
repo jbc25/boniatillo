@@ -77,11 +77,10 @@ public class NewPaymentStep2Fragment extends BaseFragment implements NewPaymentS
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.btn_continue:
-                WindowUtils.hideSoftKeyboard(getActivity());
-                getAmountData();
-                break;
+        int id = v.getId();
+        if (id == R.id.btn_continue) {
+            WindowUtils.hideSoftKeyboard(getActivity());
+            getAmountData();
         }
 
     }

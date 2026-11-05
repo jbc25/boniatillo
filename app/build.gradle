@@ -9,31 +9,33 @@ android {
     defaultConfig {
         applicationId 'com.acpp.boniatillo'
 
-        minSdkVersion 23
-        targetSdkVersion 35
-        compileSdk 35
+        minSdk 23
+        targetSdk 37
+        compileSdk 37
 
-        versionCode 211
-        versionName '2.1.1'
+        versionCode 2200
+        versionName '2.2.0'
         testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
-
-        multiDexEnabled true //important
     }
     buildTypes {
         release {
             minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
     productFlavors {
     }
 
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
     }
 
     namespace 'com.acpp.boniatillo'
+
+    buildFeatures {
+        buildConfig true
+    }
 
     lint {
         abortOnError false
@@ -73,8 +75,6 @@ dependencies {
     implementation 'com.google.firebase:firebase-crashlytics'
 
     implementation 'com.google.android.gms:play-services-places:17.1.0'
-    
-    implementation 'androidx.multidex:multidex:2.0.1'
 
     implementation 'com.github.kenglxn.QRGen:android:2.4.0'
 

@@ -116,22 +116,13 @@ public class EntityInfoActivity extends BaseActivity implements View.OnClickList
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.btn_new_payment:
-                presenter.onNewPaymentClick();
-                break;
-
-            case R.id.img_heart:
-                Toasty.info(this, getString(R.string.social_balance_info_soon)).show();
-                break;
-
-            case R.id.btn_rrss_web:
-            case R.id.btn_rrss_telegram:
-            case R.id.btn_rrss_twitter:
-            case R.id.btn_rrss_facebook:
-            case R.id.btn_rrss_instagram:
-                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(String.valueOf(v.getTag()))));
-                break;
+        int id = v.getId();
+        if (id == R.id.btn_new_payment) {
+            presenter.onNewPaymentClick();
+        } else if (id == R.id.img_heart) {
+            Toasty.info(this, getString(R.string.social_balance_info_soon)).show();
+        } else if (id == R.id.btn_rrss_web || id == R.id.btn_rrss_telegram || id == R.id.btn_rrss_twitter || id == R.id.btn_rrss_facebook || id == R.id.btn_rrss_instagram) {
+            startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(String.valueOf(v.getTag()))));
         }
     }
 

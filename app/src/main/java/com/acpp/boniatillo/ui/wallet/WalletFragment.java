@@ -114,10 +114,9 @@ public class WalletFragment extends BaseFragment implements View.OnClickListener
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
-        switch (item.getItemId()) {
-            case R.id.menuItem_show_qr:
-                presenter.onShowQRClick();
-                break;
+        int id = item.getItemId();
+        if (id == R.id.menuItem_show_qr) {
+            presenter.onShowQRClick();
         }
 
         return super.onOptionsItemSelected(item);
@@ -125,34 +124,21 @@ public class WalletFragment extends BaseFragment implements View.OnClickListener
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.btn_new_payment:
-                startActivity(NewPaymentPresenter.newNewPaymentActivity(getActivity(), null));
-                break;
-
-            case R.id.btn_login:
-                startActivity(new Intent(getActivity(), LoginActivity.class));
-                break;
-
-            case R.id.btn_singup:
-                startActivity(new Intent(getActivity(), RegisterActivity.class));
-                break;
-
-            case R.id.btn_get_boniatos:
-                startActivity(GetBoniatosPresenter.newGetBoniatosActivity(getActivity()));
-                break;
-
-            case R.id.btn_activities:
-                ActivitiesPresenter.launchActivitiesActivity(getActivity());
-                break;
-
-            case R.id.btn_movements:
-                startActivity(TransactionsPresenter.newTransactionsActivity(getActivity()));
-                break;
-
-            case R.id.btn_pending_payments:
-                startActivity(PaymentsPresenter.newPaymentsActivity(getActivity()));
-                break;
+        int id = v.getId();
+        if (id == R.id.btn_new_payment) {
+            startActivity(NewPaymentPresenter.newNewPaymentActivity(getActivity(), null));
+        } else if (id == R.id.btn_login) {
+            startActivity(new Intent(getActivity(), LoginActivity.class));
+        } else if (id == R.id.btn_singup) {
+            startActivity(new Intent(getActivity(), RegisterActivity.class));
+        } else if (id == R.id.btn_get_boniatos) {
+            startActivity(GetBoniatosPresenter.newGetBoniatosActivity(getActivity()));
+        } else if (id == R.id.btn_activities) {
+            ActivitiesPresenter.launchActivitiesActivity(getActivity());
+        } else if (id == R.id.btn_movements) {
+            startActivity(TransactionsPresenter.newTransactionsActivity(getActivity()));
+        } else if (id == R.id.btn_pending_payments) {
+            startActivity(PaymentsPresenter.newPaymentsActivity(getActivity()));
         }
     }
 

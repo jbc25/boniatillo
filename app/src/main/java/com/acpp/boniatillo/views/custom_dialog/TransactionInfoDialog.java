@@ -65,11 +65,9 @@ public class TransactionInfoDialog extends AppCompatDialogFragment implements Vi
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()) {
-
-            case R.id.btn_close:
-                dismiss();
-                break;
+        int id = v.getId();
+        if (id == R.id.btn_close) {
+            dismiss();
         }
     }
 

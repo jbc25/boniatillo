@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.appcompat.app.AlertDialog;
 
 import com.acpp.boniatillo.R;
@@ -111,6 +112,13 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
         findViews();
         presenter.onCreate();
 
+        getOnBackPressedDispatcher().addCallback(this, new OnBackPressedCallback(true) {
+            @Override
+            public void handleOnBackPressed() {
+                showConfirmExitDialog();
+            }
+        });
+
         final PlaceAutocompleteFragment autocompleteFragment = (PlaceAutocompleteFragment)
                 getFragmentManager().findFragmentById(R.id.place_autocomplete_fragment);
         autocompleteFragment.setHint(getString(R.string.address));
@@ -149,37 +157,27 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.btn_register_person:
-                presenter.onUserPersonClick();
-                btnRegisterPerson.setSelected(true);
-                btnRegisterEntity.setSelected(false);
-                break;
-            case R.id.btn_register_entity:
-                presenter.onUserEntityClick();
-                btnRegisterEntity.setSelected(true);
-                btnRegisterPerson.setSelected(false);
-                break;
-
-            case R.id.btn_register_continue:
-                WindowUtils.hideSoftKeyboard(this);
-                presenter.onContinueRegisterButtonClick();
-                break;
-
-            case R.id.btn_register_back:
-                WindowUtils.hideSoftKeyboard(this);
-                presenter.onBackRegisterButtonClick();
-                break;
-
-            case R.id.btn_go_to_login:
-                startActivity(new Intent(this, LoginActivity.class));
-                finish();
-                overridePendingTransition(0, 0);
-                break;
-
-            case R.id.btn_info_username:
-                showInfoUsernameDialog();
-                break;
+        int id = v.getId();
+        if (id == R.id.btn_register_person) {
+            presenter.onUserPersonClick();
+            btnRegisterPerson.setSelected(true);
+            btnRegisterEntity.setSelected(false);
+        } else if (id == R.id.btn_register_entity) {
+            presenter.onUserEntityClick();
+            btnRegisterEntity.setSelected(true);
+            btnRegisterPerson.setSelected(false);
+        } else if (id == R.id.btn_register_continue) {
+            WindowUtils.hideSoftKeyboard(this);
+            presenter.onContinueRegisterButtonClick();
+        } else if (id == R.id.btn_register_back) {
+            WindowUtils.hideSoftKeyboard(this);
+            presenter.onBackRegisterButtonClick();
+        } else if (id == R.id.btn_go_to_login) {
+            startActivity(new Intent(this, LoginActivity.class));
+            finish();
+            overridePendingTransition(0, 0);
+        } else if (id == R.id.btn_info_username) {
+            showInfoUsernameDialog();
         }
     }
 
@@ -190,11 +188,6 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
                 .setMessage(R.string.username_info)
                 .setNegativeButton(R.string.back, null)
                 .show();
-    }
-
-    @Override
-    public void onBackPressed() {
-        showConfirmExitDialog();
     }
 
     private void showConfirmExitDialog() {

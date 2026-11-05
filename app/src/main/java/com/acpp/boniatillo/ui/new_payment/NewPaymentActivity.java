@@ -1,6 +1,5 @@
 package com.acpp.boniatillo.ui.new_payment;
 
-import android.annotation.SuppressLint;
 import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -10,6 +9,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
+import androidx.activity.OnBackPressedCallback;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
@@ -93,6 +93,13 @@ public class NewPaymentActivity extends BaseActivity implements NewPaymentView, 
 
         presenter.onCreate(getIntent());
 
+        getOnBackPressedDispatcher().addCallback(this, new OnBackPressedCallback(true) {
+            @Override
+            public void handleOnBackPressed() {
+                presenter.onBackPressed();
+            }
+        });
+
     }
 
     @Override
@@ -144,21 +151,11 @@ public class NewPaymentActivity extends BaseActivity implements NewPaymentView, 
         }
     }
 
-    @SuppressLint("MissingSuperCall")
-    @Override
-    public void onBackPressed() {
-        presenter.onBackPressed();
-    }
-
     @Override
     public void onClick(View v) {
-        switch (v.getId()) {
-
-            case R.id.tv_step_1:
-            case R.id.tv_step_2:
-            case R.id.tv_step_3:
-                presenter.onIndicatorSectionClick(Integer.parseInt(v.getTag().toString()));
-                break;
+        int id = v.getId();
+        if (id == R.id.tv_step_1 || id == R.id.tv_step_2 || id == R.id.tv_step_3) {
+            presenter.onIndicatorSectionClick(Integer.parseInt(v.getTag().toString()));
         }
     }
 

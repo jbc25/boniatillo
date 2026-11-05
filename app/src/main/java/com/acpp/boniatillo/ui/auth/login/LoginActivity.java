@@ -52,26 +52,19 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.btn_login:
+        int id = v.getId();
+        if (id == R.id.btn_login) {
+            String username = editUsername.getText().toString();
+            String password = editPassword.getText().toString();
 
-                String username = editUsername.getText().toString();
-                String password = editPassword.getText().toString();
-
-                presenter.onLoginClick(username, password);
-                break;
-
-            case R.id.btn_remember_password:
-                String username2 = editUsername.getText().toString();
-                presenter.onRememberPasswordClick(username2);
-                break;
-
-            case R.id.btn_register:
-                startActivity(new Intent(this, RegisterActivity.class));
-                finish();
-                overridePendingTransition(0, 0);
-                break;
-
+            presenter.onLoginClick(username, password);
+        } else if (id == R.id.btn_remember_password) {
+            String username2 = editUsername.getText().toString();
+            presenter.onRememberPasswordClick(username2);
+        } else if (id == R.id.btn_register) {
+            startActivity(new Intent(this, RegisterActivity.class));
+            finish();
+            overridePendingTransition(0, 0);
         }
     }
 

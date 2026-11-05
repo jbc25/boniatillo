@@ -98,19 +98,14 @@ public class EntitiesFragment extends BaseFragment implements EntitiesView, Enti
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
-        switch (item.getItemId()) {
-            case R.id.menuItem_search:
-                viewSearchEntities.setVisibility(viewSearchEntities.getVisibility() == View.VISIBLE ? View.GONE : View.VISIBLE);
-                if (viewSearchEntities.getVisibility() == View.GONE) {
-                    WindowUtils.hideSoftKeyboard(getActivity());
-                }
-
-                break;
-
-            case R.id.menuItem_show_map:
-            case R.id.menuItem_show_list:
-                viewpagerEntities.setCurrentItem(viewpagerEntities.getCurrentItem() == 0 ? 1 : 0, true);
-                break;
+        int id = item.getItemId();
+        if (id == R.id.menuItem_search) {
+            viewSearchEntities.setVisibility(viewSearchEntities.getVisibility() == View.VISIBLE ? View.GONE : View.VISIBLE);
+            if (viewSearchEntities.getVisibility() == View.GONE) {
+                WindowUtils.hideSoftKeyboard(getActivity());
+            }
+        } else if (id == R.id.menuItem_show_map || id == R.id.menuItem_show_list) {
+            viewpagerEntities.setCurrentItem(viewpagerEntities.getCurrentItem() == 0 ? 1 : 0, true);
         }
 
         return super.onOptionsItemSelected(item);
@@ -119,10 +114,9 @@ public class EntitiesFragment extends BaseFragment implements EntitiesView, Enti
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.btn_search_entities:
-                presenter.onSearch(editSearchEntities.getText().toString());
-                break;
+        int id = v.getId();
+        if (id == R.id.btn_search_entities) {
+            presenter.onSearch(editSearchEntities.getText().toString());
         }
 
     }

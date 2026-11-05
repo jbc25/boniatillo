@@ -94,22 +94,17 @@ public class NewPaymentDialog extends DialogFragment implements View.OnClickList
     public void onClick(View v) {
 
 
-        switch (v.getId()) {
-            case R.id.btn_payment_accept:
-                baseActivity.showProgressDialog(getString(R.string.processing));
-                enableButtons(false);
-                paymentInteractor.acceptPayment(notification.getId(), acceptCancelCallback);
-                break;
-
-            case R.id.btn_payment_cancel:
-                baseActivity.showProgressDialog(getString(R.string.processing));
-                enableButtons(false);
-                paymentInteractor.cancelPayment(notification.getId(), acceptCancelCallback);
-                break;
-
-            case R.id.btn_decide_later:
-                dismiss();
-                break;
+        int id = v.getId();
+        if (id == R.id.btn_payment_accept) {
+            baseActivity.showProgressDialog(getString(R.string.processing));
+            enableButtons(false);
+            paymentInteractor.acceptPayment(notification.getId(), acceptCancelCallback);
+        } else if (id == R.id.btn_payment_cancel) {
+            baseActivity.showProgressDialog(getString(R.string.processing));
+            enableButtons(false);
+            paymentInteractor.cancelPayment(notification.getId(), acceptCancelCallback);
+        } else if (id == R.id.btn_decide_later) {
+            dismiss();
         }
     }
 

@@ -83,10 +83,9 @@ public class NewPaymentStep1Fragment extends BaseFragment implements NewPaymentS
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
-        switch (item.getItemId()) {
-            case R.id.menuItem_scan_qr:
-                startScan();
-                break;
+        int id = item.getItemId();
+        if (id == R.id.menuItem_scan_qr) {
+            startScan();
         }
 
         return super.onOptionsItemSelected(item);
@@ -119,10 +118,9 @@ public class NewPaymentStep1Fragment extends BaseFragment implements NewPaymentS
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.btn_continue:
-                presenter.onContinueClick();
-                break;
+        int id = v.getId();
+        if (id == R.id.btn_continue) {
+            presenter.onContinueClick();
         }
     }
 

@@ -109,16 +109,12 @@ public class BonusDialog extends AppCompatDialogFragment implements View.OnClick
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()) {
-
-            case R.id.btn_go_to_transactions:
-                startActivity(TransactionsPresenter.newTransactionsActivity(getActivity()));
-                dismiss();
-                break;
-
-            case R.id.btn_close:
-                dismiss();
-                break;
+        int id = v.getId();
+        if (id == R.id.btn_go_to_transactions) {
+            startActivity(TransactionsPresenter.newTransactionsActivity(getActivity()));
+            dismiss();
+        } else if (id == R.id.btn_close) {
+            dismiss();
         }
     }
 
